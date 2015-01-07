@@ -1,0 +1,28 @@
+---
+name: SSO Services
+description: ''
+keywords: ''
+type: Default
+documentation: ''
+images:
+- name: license-service
+  source: docks.abasag.intra:5000/abas_sso/license-service:latest
+  category: SSO Services
+  type: Default
+  ports:
+  - host_port: '8046'
+    container_port: '8080'
+    proto: TCP
+- name: cas
+  source: docks.abas.de:5000/abas_sso/cas4:latest
+  category: SSO Services
+  type: Default
+  expose:
+  - '8080'
+  ports:
+  - host_port: '8040'
+    container_port: '8080'
+    proto: TCP
+  links:
+  - service: license-service
+    alias: license-service
