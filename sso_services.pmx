@@ -1,7 +1,7 @@
 ---
 name: SSO Services
-description: ''
-keywords: ''
+description: Basic SSO Setup
+keywords: sso
 type: Default
 documentation: ''
 images:
