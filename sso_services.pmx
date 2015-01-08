@@ -1,7 +1,7 @@
 ---
 name: SSO Services
-description: Basic SSO Setup
-keywords: sso
+description: ''
+keywords: ''
 type: Default
 documentation: ''
 images:
@@ -26,3 +26,19 @@ images:
   links:
   - service: license-service
     alias: license-service
+- name: etcd-ambassador
+  source: polvi/simple-amb:latest
+  category: Ambassadors
+  type: Default
+  command: 172.17.42.1:4001
+- name: license-service-registration
+  source: polvi/docker-register:latest
+  category: Registration
+  type: Default
+  links:
+  - service: etcd-ambassador
+    alias: etcd
+  volumes:
+  - host_path: "/var/run/docker.sock"
+    container_path: "/var/run/docker.sock"
+  command: license-service 8080 license-service
